@@ -44,11 +44,21 @@ def crear_administrativo(request):
 
 
 def lista_permanentes(request):
+    nombre_a_buscar = request.GET.get('nombre', None)
+    if nombre_a_buscar is not None:
+        permanentes = Permanente.objects.filter(nombre__icontains = nombre_a_buscar)
+    else:
+        permanentes = Permanente.objects.all()
     permanentes=None
     form = PermanenteBuscar()
     return render(request, 'profesionales/lista_permanentes.html', {'form':form, 'permanentes': permanentes})
 
 def lista_freelances(request):
+    nombre_a_buscar = request.GET.get('nombre', None)
+    if nombre_a_buscar is not None:
+        freelances = Freelance.objects.filter(nombre__icontains = nombre_a_buscar)
+    else:
+        freelances = Freelance.objects.all()
     freelances=None
     form = FreelanceBuscar()
     return render(request, 'profesionales/lista_freelances.html', {'form':form, 'freelances': freelances})
@@ -58,7 +68,7 @@ def lista_administrativos(request):
     if nombre_a_buscar is not None:
         administrativos = Administrativo.objects.filter(nombre__icontains = nombre_a_buscar)
     else:
-        administrativos
+        administrativos = Administrativo.objects.all()
     administrativos=None
     form = AdministrativoBuscar()
     return render(request, 'profesionales/lista_administrativos.html', {'form':form, 'administrativos': administrativos})
