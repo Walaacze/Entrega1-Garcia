@@ -1,15 +1,16 @@
 from django.db import models
-
-class Marketing(models.Model):
+class Permanente(models.Model):
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=30)
     area = models.CharField(max_length=40)
     desempleado = models.BooleanField()
-
-class Permanente(Marketing):
-    sueldo_aportes = models.IntegerField(max_length=1000)
+    sueldo_aportes = models.IntegerField()
     
-class Freelance(Marketing):
+class Freelance(models.Model):
+    nombre = models.CharField(max_length=20)
+    apellido = models.CharField(max_length=30)
+    area = models.CharField(max_length=40)
+    desempleado = models.BooleanField()
     tarea_asignada = models.CharField(max_length=35)
     fecha_entrega = models.DateTimeField(max_length=10)
     
